@@ -4,9 +4,9 @@ import { resultError, resultSuccess, getRequestToken, requestParams } from '../_
 export function createFakeUserList() {
   return [
     {
-      userId: '1',
+      id: '1',
       username: 'admin',
-      realName: 'Admin',
+      name: 'Admin',
       avatar: 'https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640',
       desc: 'manager',
       password: 'admin',
@@ -20,10 +20,10 @@ export function createFakeUserList() {
       ],
     },
     {
-      userId: '2',
+      id: '2',
       username: 'test',
       password: '123456',
-      realName: 'test user',
+      name: 'test user',
       avatar: 'https://q1.qlogo.cn/g?b=qq&nk=339449197&s=640',
       desc: 'tester',
       token: 'fakeToken2',
@@ -57,13 +57,13 @@ export default [
       if (!checkUser) {
         return resultError('账号或密码错误！');
       }
-      const { userId, username: _username, token, realName, desc, roles } = checkUser;
+      const { id, username: _username, token, name, desc, roles } = checkUser;
       return resultSuccess({
         roles,
-        userId,
+        id,
         username: _username,
         token,
-        realName,
+        name,
         desc,
       });
     },
@@ -92,7 +92,7 @@ export default [
       if (!checkUser) {
         return resultError('Invalid token!');
       }
-      const codeList = fakeCodeList[checkUser.userId];
+      const codeList = fakeCodeList[checkUser.id];
 
       return resultSuccess(codeList);
     },
