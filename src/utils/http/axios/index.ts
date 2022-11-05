@@ -183,13 +183,10 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
     // 深度合并
     deepMerge(
       {
-        // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes
-        // authentication schemes，e.g: Bearer
-        // authenticationScheme: 'Bearer',
-        authenticationScheme: '',
+        authenticationScheme: 'Bearer',
         timeout: 10 * 1000,
         // 基础接口地址
-        // baseURL: globSetting.apiUrl,
+        baseURL: globSetting.apiUrl,
 
         headers: { 'Content-Type': ContentTypeEnum.JSON },
         // 如果是form-data格式
@@ -211,7 +208,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           // 消息提示类型
           errorMessageMode: 'message',
           // 接口地址
-          apiUrl: globSetting.apiUrl,
+          // apiUrl: globSetting.apiUrl,
           // 接口拼接地址
           urlPrefix: urlPrefix,
           //  是否加入时间戳
