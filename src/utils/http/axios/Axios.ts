@@ -25,7 +25,7 @@ export class VAxios {
   }
 
   /**
-   * @description:  Create axios instance
+   * @description:  创建axios实例
    */
   private createAxios(config: CreateAxiosOptions): void {
     this.axiosInstance = axios.create(config);
