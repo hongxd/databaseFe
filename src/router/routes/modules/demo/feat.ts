@@ -16,30 +16,6 @@ const feat: AppRouteModule = {
 
   children: [
     {
-      path: 'icon',
-      name: 'IconDemo',
-      component: () => import('/@/views/demo/feat/icon/index.vue'),
-      meta: {
-        title: t('routes.demo.feat.icon'),
-      },
-    },
-    {
-      path: 'session-timeout',
-      name: 'SessionTimeout',
-      component: () => import('/@/views/demo/feat/session-timeout/index.vue'),
-      meta: {
-        title: t('routes.demo.feat.sessionTimeout'),
-      },
-    },
-    {
-      path: 'print',
-      name: 'Print',
-      component: () => import('/@/views/demo/feat/print/index.vue'),
-      meta: {
-        title: t('routes.demo.feat.print'),
-      },
-    },
-    {
       path: 'tabs',
       name: 'TabsDemo',
       component: () => import('/@/views/demo/feat/tabs/index.vue'),

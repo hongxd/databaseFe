@@ -53,14 +53,6 @@ export default [
     },
   },
   {
-    url: '/basic-api/user/sessionTimeout',
-    method: 'post',
-    statusCode: 401,
-    response: () => {
-      return resultError();
-    },
-  },
-  {
     url: '/basic-api/user/tokenExpired',
     method: 'post',
     statusCode: 200,

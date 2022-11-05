@@ -61,11 +61,8 @@ export default {
   },
   feat: {
     feat: '功能',
-    icon: '图标',
-    sessionTimeout: '登录过期',
     tabs: '标签页操作',
     tabDetail: '标签详情页',
-    print: '打印',
     contextMenu: '右键菜单',
     clickOutSide: 'ClickOutSide组件',
     imgPreview: '图片预览',
@@ -123,10 +120,6 @@ export default {
     account: '个人页',
     accountCenter: '个人中心',
     accountSetting: '个人设置',
-
-    exception: '异常页',
-    netWorkError: '网络错误',
-    notData: '无数据',
 
     list: '列表页',
     listCard: '卡片列表',

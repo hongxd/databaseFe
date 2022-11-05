@@ -75,7 +75,6 @@ specifiers:
   postcss-html: ^1.4.1
   postcss-less: ^6.0.0
   prettier: ^2.6.2
-  print-js: ^1.6.0
   qrcode: ^1.5.0
   qs: ^6.10.3
   resize-observer-polyfill: ^1.5.1
@@ -140,7 +139,6 @@ dependencies:
   nprogress: 0.2.0
   path-to-regexp: 6.2.0
   pinia: 2.0.12_ifhmkzsxec62ezvqv7qmanm4bq
-  print-js: 1.6.0
   qrcode: 1.5.0
   qs: 6.10.3
   resize-observer-polyfill: 1.5.1
@@ -7806,10 +7804,6 @@ packages:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
     engines: {node: '>=6'}
     dev: true
-
-  /print-js/1.6.0:
-    resolution: {integrity: sha512-BfnOIzSKbqGRtO4o0rnj/K3681BSd2QUrsIZy/+WdCIugjIswjmx3lDEZpXB2ruGf9d4b3YNINri81+J0FsBWg==}
-    dev: false
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
