@@ -4,22 +4,6 @@ import { resultError, resultSuccess, getRequestToken, requestParams } from '../_
 export function createFakeUserList() {
   return [
     {
-      id: '1',
-      username: 'admin',
-      name: 'Admin',
-      avatar: 'https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640',
-      desc: 'manager',
-      password: 'admin',
-      token: 'fakeToken1',
-      homePath: '/dashboard/analysis',
-      roles: [
-        {
-          roleName: 'Super Admin',
-          value: 'super',
-        },
-      ],
-    },
-    {
       id: '2',
       username: 'test',
       password: '123456',
@@ -44,43 +28,6 @@ const fakeCodeList: any = {
   '2': ['2000', '4000', '6000'],
 };
 export default [
-  // mock user login
-  {
-    url: '/basic-api/login',
-    timeout: 200,
-    method: 'post',
-    response: ({ body }) => {
-      const { username, password } = body;
-      const checkUser = createFakeUserList().find(
-        (item) => item.username === username && password === item.password,
-      );
-      if (!checkUser) {
-        return resultError('账号或密码错误！');
-      }
-      const { id, username: _username, token, name, desc, roles } = checkUser;
-      return resultSuccess({
-        roles,
-        id,
-        username: _username,
-        token,
-        name,
-        desc,
-      });
-    },
-  },
-  {
-    url: '/basic-api/getUserInfo',
-    method: 'get',
-    response: (request: requestParams) => {
-      const token = getRequestToken(request);
-      if (!token) return resultError('Invalid token');
-      const checkUser = createFakeUserList().find((item) => item.token === token);
-      if (!checkUser) {
-        return resultError('The corresponding user information was not obtained!');
-      }
-      return resultSuccess(checkUser);
-    },
-  },
   {
     url: '/basic-api/getPermCode',
     timeout: 200,
@@ -95,28 +42,6 @@ export default [
       const codeList = fakeCodeList[checkUser.id];
 
       return resultSuccess(codeList);
-    },
-  },
-  {
-    url: '/basic-api/logout',
-    timeout: 200,
-    method: 'get',
-    response: (request: requestParams) => {
-      const token = getRequestToken(request);
-      if (!token) return resultError('Invalid token');
-      const checkUser = createFakeUserList().find((item) => item.token === token);
-      if (!checkUser) {
-        return resultError('Invalid token!');
-      }
-      return resultSuccess(undefined, { message: 'Token has been destroyed' });
-    },
-  },
-  {
-    url: '/basic-api/testRetry',
-    statusCode: 405,
-    method: 'get',
-    response: () => {
-      return resultError('Error!');
     },
   },
 ] as MockMethod[];
