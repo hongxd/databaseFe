@@ -37,10 +37,6 @@ export function getPermCode() {
   return defHttp.get<string[]>({ url: Api.GetPermCode });
 }
 
-export function doLogout() {
-  return defHttp.get({ url: Api.Logout });
-}
-
 export function testRetry() {
   return defHttp.get(
     { url: Api.TestRetry },
