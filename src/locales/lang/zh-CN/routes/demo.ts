@@ -81,7 +81,6 @@ export default {
     menu: 'Menu带参',
     menu1: 'Menu带参1',
     menu2: 'Menu带参2',
-    ws: 'websocket测试',
     breadcrumb: '面包屑导航',
     breadcrumbFlat: '平级模式',
     breadcrumbFlatDetail: '平级详情',
@@ -146,9 +145,6 @@ export default {
     back: '基于后台权限',
     backPage: '页面权限',
     backBtn: '按钮权限',
-  },
-  setup: {
-    page: '引导页',
   },
   system: {
     moduleName: '系统管理',

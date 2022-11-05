@@ -24,14 +24,6 @@ const feat: AppRouteModule = {
       },
     },
     {
-      path: 'ws',
-      name: 'WebSocket',
-      component: () => import('/@/views/demo/feat/ws/index.vue'),
-      meta: {
-        title: t('routes.demo.feat.ws'),
-      },
-    },
-    {
       path: 'session-timeout',
       name: 'SessionTimeout',
       component: () => import('/@/views/demo/feat/session-timeout/index.vue'),
