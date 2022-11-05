@@ -1,8 +1,5 @@
 export default {
   charts: {
-    baiduMap: '百度地图',
-    aMap: '高德地图',
-    googleMap: '谷歌地图',
     charts: '图表',
     map: '地图',
     line: '折线图',
@@ -70,7 +67,6 @@ export default {
     tabDetail: '标签详情页',
     print: '打印',
     contextMenu: '右键菜单',
-    download: '文件下载',
     clickOutSide: 'ClickOutSide组件',
     imgPreview: '图片预览',
     copy: '剪切板',
@@ -88,7 +84,6 @@ export default {
     ws: 'websocket测试',
     breadcrumb: '面包屑导航',
     breadcrumbFlat: '平级模式',
-    requestDemo: '测试请求重试',
     breadcrumbFlatDetail: '平级详情',
     breadcrumbChildren: '层级模式',
     breadcrumbChildrenDetail: '层级详情',
