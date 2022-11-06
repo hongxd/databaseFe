@@ -12,7 +12,7 @@ import {
 import { SIDE_BAR_BG_COLOR_LIST, HEADER_PRESET_BG_COLOR_LIST } from './designSetting';
 import { primaryColor } from '../../build/config/themeConfig';
 
-// ! You need to clear the browser cache after the change
+// !改动后需要清除浏览器缓存
 const setting: ProjectConfig = {
   // Whether to show the configuration button
   showSettingButton: true,
@@ -24,7 +24,7 @@ const setting: ProjectConfig = {
   settingButtonPosition: SettingButtonPositionEnum.AUTO,
 
   // Permission mode
-  permissionMode: PermissionModeEnum.ROUTE_MAPPING,
+  permissionMode: PermissionModeEnum.BACK,
 
   // Permission-related cache is stored in sessionStorage or localStorage
   permissionCacheType: CacheTypeEnum.LOCAL,

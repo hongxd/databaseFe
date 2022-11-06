@@ -19,15 +19,11 @@ import { ERROR_LOG_ROUTE, PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic';
 import { filter } from '/@/utils/helper/treeHelper';
 
 import { getMenuList } from '/@/api/sys/menu';
-import { getPermCode } from '/@/api/sys/user';
 
 import { useMessage } from '/@/hooks/web/useMessage';
 import { PageEnum } from '/@/enums/pageEnum';
 
 interface PermissionState {
-  // Permission code list
-  // 权限代码列表
-  permCodeList: string[] | number[];
   // Whether the route has been dynamically added
   // 路由是否动态添加
   isDynamicAddedRoute: boolean;
@@ -44,8 +40,6 @@ interface PermissionState {
 export const usePermissionStore = defineStore({
   id: 'app-permission',
   state: (): PermissionState => ({
-    // 权限代码列表
-    permCodeList: [],
     // Whether the route has been dynamically added
     // 路由是否动态添加
     isDynamicAddedRoute: false,
@@ -60,9 +54,6 @@ export const usePermissionStore = defineStore({
     frontMenuList: [],
   }),
   getters: {
-    getPermCodeList(): string[] | number[] {
-      return this.permCodeList;
-    },
     getBackMenuList(): Menu[] {
       return this.backMenuList;
     },
@@ -77,10 +68,6 @@ export const usePermissionStore = defineStore({
     },
   },
   actions: {
-    setPermCodeList(codeList: string[]) {
-      this.permCodeList = codeList;
-    },
-
     setBackMenuList(list: Menu[]) {
       this.backMenuList = list;
       list?.length > 0 && this.setLastBuildMenuTime();
@@ -99,13 +86,8 @@ export const usePermissionStore = defineStore({
     },
     resetState(): void {
       this.isDynamicAddedRoute = false;
-      this.permCodeList = [];
       this.backMenuList = [];
       this.lastBuildMenuTime = 0;
-    },
-    async changePermissionCode() {
-      const codeList = await getPermCode();
-      this.setPermCodeList(codeList);
     },
 
     // 构建路由
@@ -169,21 +151,12 @@ export const usePermissionStore = defineStore({
       };
 
       switch (permissionMode) {
-        // 角色权限
-        case PermissionModeEnum.ROLE:
-          // 对非一级路由进行过滤
-          routes = filter(asyncRoutes, routeFilter);
-          // 对一级路由根据角色权限过滤
-          routes = routes.filter(routeFilter);
-          // Convert multi-level routing to level 2 routing
-          // 将多级路由转换为 2 级路由
-          routes = flatMultiLevelRoutes(routes);
-          break;
-
         // 路由映射， 默认进入该case
         case PermissionModeEnum.ROUTE_MAPPING:
           // 对非一级路由进行过滤
+          console.log(asyncRoutes);
           routes = filter(asyncRoutes, routeFilter);
+          console.log(routes);
           // 对一级路由再次根据角色权限过滤
           routes = routes.filter(routeFilter);
           // 将路由转换成菜单
@@ -205,7 +178,6 @@ export const usePermissionStore = defineStore({
           routes = flatMultiLevelRoutes(routes);
           break;
 
-        //  If you are sure that you do not need to do background dynamic permissions, please comment the entire judgment below
         //  如果确定不需要做后台动态权限，请在下方注释整个判断
         case PermissionModeEnum.BACK:
           const { createMessage } = useMessage();
@@ -215,28 +187,21 @@ export const usePermissionStore = defineStore({
             duration: 1,
           });
 
-          // !Simulate to obtain permission codes from the background,
-          // 模拟从后台获取权限码，
-          // this function may only need to be executed once, and the actual project can be put at the right time by itself
-          // 这个功能可能只需要执行一次，实际项目可以自己放在合适的时间
+          // 模拟从后台获取权限码，这个功能可能只需要执行一次，实际项目可以自己放在合适的时间
           let routeList: AppRouteRecordRaw[] = [];
           try {
-            await this.changePermissionCode();
             routeList = (await getMenuList()) as AppRouteRecordRaw[];
           } catch (error) {
             console.error(error);
           }
 
-          // Dynamically introduce components
           // 动态引入组件
           routeList = transformObjToRoute(routeList);
 
-          //  Background routing to menu structure
           //  后台路由到菜单结构
           const backMenuList = transformRouteToMenu(routeList);
           this.setBackMenuList(backMenuList);
 
-          // remove meta.ignoreRoute item
           // 删除 meta.ignoreRoute 项
           routeList = filter(routeList, routeRemoveIgnoreFilter);
           routeList = routeList.filter(routeRemoveIgnoreFilter);
