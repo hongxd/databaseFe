@@ -137,9 +137,9 @@ const transform: AxiosTransform = {
     errorLogStore.addAjaxErrorInfo(error);
     const { response, code, message, config } = error || {};
     const errorMessageMode = config?.requestOptions?.errorMessageMode || 'none';
-    const msg: string = response?.data?.error?.message ?? '';
+    const msg: string = response?.data?.error?.message ?? response?.data;
     const err: string = error?.toString?.() ?? '';
-    let errMessage = '';
+    let errMessage = msg ?? '';
 
     if (axios.isCancel(error)) {
       return Promise.reject(error);
@@ -153,13 +153,13 @@ const transform: AxiosTransform = {
         errMessage = t('sys.api.networkExceptionMsg');
       }
 
-      if (errMessage) {
+      if (errMessage && errMessage !== msg) {
         if (errorMessageMode === 'modal') {
           createErrorModal({ title: t('sys.api.errorTip'), content: errMessage });
         } else if (errorMessageMode === 'message') {
           createMessage.error(errMessage);
         }
-        return Promise.reject(error);
+        return Promise.reject(errMessage);
       }
     } catch (error) {
       throw new Error(error as unknown as string);
@@ -174,6 +174,7 @@ const transform: AxiosTransform = {
       isOpenRetry &&
       // @ts-ignore
       retryRequest.retry(axiosInstance, error);
+    if (errMessage) throw new Error(errMessage);
     return Promise.reject(error);
   },
 };

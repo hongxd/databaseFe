@@ -1,4 +1,6 @@
+import { Gender } from '/@/api/demo/model/gender';
 import { FormSchema } from '/@/components/Form/index';
+import { RoleEnum } from '/@/enums/roleEnum';
 
 export interface ListItem {
   key: string;
@@ -23,11 +25,6 @@ export const settingList = [
   },
   {
     key: '3',
-    name: '账号绑定',
-    component: 'AccountBind',
-  },
-  {
-    key: '4',
     name: '新消息通知',
     component: 'MsgNotify',
   },
@@ -36,33 +33,65 @@ export const settingList = [
 // 基础设置 form
 export const baseSetschemas: FormSchema[] = [
   {
-    field: 'email',
+    field: 'role',
+    component: 'Select',
+    componentProps: {
+      options: [
+        { label: '超级管理员', value: RoleEnum.ADMIN },
+        { label: '宿舍管理员', value: RoleEnum.MANAGER },
+        { label: '学生', value: RoleEnum.STUDENT },
+      ],
+    },
+    label: '身份信息',
+    dynamicDisabled: true,
+    colProps: { span: 18 },
+  },
+  {
+    field: 'username',
     component: 'Input',
-    label: '邮箱',
+    label: '用户名',
+    required: true,
+    dynamicDisabled(renderCallbackParams) {
+      return renderCallbackParams.values.username === 'student';
+    },
     colProps: { span: 18 },
   },
   {
     field: 'name',
     component: 'Input',
-    label: '昵称',
+    label: '真实姓名',
+    required: true,
     colProps: { span: 18 },
   },
   {
-    field: 'introduction',
-    component: 'InputTextArea',
-    label: '个人简介',
+    field: 'sex',
+    component: 'Select',
+    required: true,
+    componentProps: {
+      options: [
+        { label: '男', value: Gender.male },
+        { label: '女', value: Gender.female },
+      ],
+    },
+    label: '性别',
     colProps: { span: 18 },
   },
   {
-    field: 'phone',
+    field: 'tel',
     component: 'Input',
+    required: true,
     label: '联系电话',
     colProps: { span: 18 },
   },
   {
-    field: 'address',
+    field: 'dormBuildName',
     component: 'Input',
-    label: '所在地区',
+    // component: 'InputTextArea',
+    label: '所在宿舍楼名称',
+    show(renderCallbackParams) {
+      return renderCallbackParams.values.dormBuildName;
+    },
+    dynamicDisabled: true,
     colProps: { span: 18 },
   },
 ];
@@ -98,34 +127,6 @@ export const secureSettingList: ListItem[] = [
     title: 'MFA 设备',
     description: '未绑定 MFA 设备，绑定后，可以进行二次确认',
     extra: '修改',
-  },
-];
-
-// 账号绑定 list
-export const accountBindList: ListItem[] = [
-  {
-    key: '1',
-    title: '绑定淘宝',
-    description: '当前未绑定淘宝账号',
-    extra: '绑定',
-    avatar: 'ri:taobao-fill',
-    color: '#ff4000',
-  },
-  {
-    key: '2',
-    title: '绑定支付宝',
-    description: '当前未绑定支付宝账号',
-    extra: '绑定',
-    avatar: 'fa-brands:alipay',
-    color: '#2eabff',
-  },
-  {
-    key: '3',
-    title: '绑定钉钉',
-    description: '当前未绑定钉钉账号',
-    extra: '绑定',
-    avatar: 'ri:dingding-fill',
-    color: '#2eabff',
   },
 ];
 

@@ -72,6 +72,7 @@ export function checkStatus(
 
   if (errMessage) {
     if (errorMessageMode === 'modal') {
+      console.log(msg);
       createErrorModal({ title: t('sys.api.errorTip'), content: errMessage });
     } else if (errorMessageMode === 'message') {
       error({ content: errMessage, key: `global_error_message_status_${status}` });

@@ -112,10 +112,6 @@ export default {
     resultSuccess: '成功页',
     resultFail: '失败页',
 
-    account: '个人页',
-    accountCenter: '个人中心',
-    accountSetting: '个人设置',
-
     list: '列表页',
     listCard: '卡片列表',
     listBasic: '标准列表',

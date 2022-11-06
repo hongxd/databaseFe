@@ -1,8 +1,8 @@
 import { defHttp } from '/@/utils/http/axios';
-import { GetAccountInfoModel } from './model/accountModel';
+import { GetAccountInfoModel } from '../demo/model/accountModel';
 
 enum Api {
-  ACCOUNT_INFO = '/account/getAccountInfo',
+  ACCOUNT_INFO = '/api/personalCenter',
   SESSION_TIMEOUT = '/user/sessionTimeout',
   TOKEN_EXPIRED = '/user/tokenExpired',
 }
@@ -10,6 +10,9 @@ enum Api {
 // Get personal center-basic settings
 
 export const accountInfoApi = () => defHttp.get<GetAccountInfoModel>({ url: Api.ACCOUNT_INFO });
+
+export const updateAccountInfoApi = (userInfo: GetAccountInfoModel) =>
+  defHttp.post<void>({ url: Api.ACCOUNT_INFO, data: userInfo });
 
 export const sessionTimeoutApi = () => defHttp.post<void>({ url: Api.SESSION_TIMEOUT });
 

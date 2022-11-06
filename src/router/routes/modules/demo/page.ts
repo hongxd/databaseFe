@@ -111,36 +111,6 @@ const page: AppRouteModule = {
       ],
     },
     // =============================result end=============================
-
-    // =============================account start=============================
-    {
-      path: 'account',
-      name: 'AccountPage',
-      component: getParentLayout('AccountPage'),
-      redirect: '/page-demo/account/setting',
-      meta: {
-        title: t('routes.demo.page.account'),
-      },
-      children: [
-        {
-          path: 'center',
-          name: 'AccountCenterPage',
-          component: () => import('/@/views/demo/page/account/center/index.vue'),
-          meta: {
-            title: t('routes.demo.page.accountCenter'),
-          },
-        },
-        {
-          path: 'setting',
-          name: 'AccountSettingPage',
-          component: () => import('/@/views/demo/page/account/setting/index.vue'),
-          meta: {
-            title: t('routes.demo.page.accountSetting'),
-          },
-        },
-      ],
-    },
-    // =============================account end=============================
     // =============================list start=============================
     {
       path: 'list',

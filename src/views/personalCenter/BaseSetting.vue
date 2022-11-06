@@ -18,7 +18,7 @@
         </div>
       </a-col>
     </a-row>
-    <Button type="primary" @click="handleSubmit"> 更新基本信息 </Button>
+    <Button type="primary" @click="handleSubmit" class="update"> 更新基本信息 </Button>
   </CollapseContainer>
 </template>
 <script lang="ts">
@@ -31,7 +31,7 @@
   import { useMessage } from '/@/hooks/web/useMessage';
 
   import headerImg from '/@/assets/images/header.jpg';
-  import { accountInfoApi } from '/@/api/demo/account';
+  import { accountInfoApi, updateAccountInfoApi } from '../../api/sys/account';
   import { baseSetschemas } from './data';
   import { useUserStore } from '/@/store/modules/user';
   import { uploadApi } from '/@/api/sys/upload';
@@ -49,7 +49,7 @@
       const { createMessage } = useMessage();
       const userStore = useUserStore();
 
-      const [register, { setFieldsValue }] = useForm({
+      const [register, { setFieldsValue, getFieldsValue }] = useForm({
         labelWidth: 120,
         schemas: baseSetschemas,
         showActionButtonGroup: false,
@@ -75,9 +75,10 @@
       return {
         avatar,
         register,
-        uploadApi: uploadApi as any,
+        uploadApi,
         updateAvatar,
-        handleSubmit: () => {
+        handleSubmit: async () => {
+          await updateAccountInfoApi(getFieldsValue() as any);
           createMessage.success('更新成功！');
         },
       };
@@ -92,5 +93,9 @@
       margin-bottom: 15px;
       border-radius: 50%;
     }
+  }
+
+  .update {
+    margin-left: 20%;
   }
 </style>

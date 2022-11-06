@@ -1,7 +1,11 @@
+import { Gender } from './gender';
+
 export interface GetAccountInfoModel {
-  email: string;
+  username: string;
   name: string;
-  introduction: string;
-  phone: string;
-  address: string;
+  sex: Gender;
+  tel: string;
+  role: 'admin' | 'student' | 'dormmanager';
+  dormBuildName?: string;
+  dormBuildDetail?: string;
 }
