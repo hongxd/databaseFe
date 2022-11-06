@@ -1,6 +1,6 @@
-import { Gender } from '/@/api/demo/model/gender';
 import { FormSchema } from '/@/components/Form/index';
-import { RoleEnum } from '/@/enums/roleEnum';
+import { roleOptions } from '/@/utils/RoleOptions';
+import { sexOptions } from '/@/utils/sexOptions';
 
 export interface ListItem {
   key: string;
@@ -35,13 +35,7 @@ export const baseSetschemas: FormSchema[] = [
   {
     field: 'role',
     component: 'Select',
-    componentProps: {
-      options: [
-        { label: '超级管理员', value: RoleEnum.ADMIN },
-        { label: '宿舍管理员', value: RoleEnum.MANAGER },
-        { label: '学生', value: RoleEnum.STUDENT },
-      ],
-    },
+    componentProps: roleOptions,
     label: '身份信息',
     dynamicDisabled: true,
     colProps: { span: 18 },
@@ -67,12 +61,7 @@ export const baseSetschemas: FormSchema[] = [
     field: 'sex',
     component: 'Select',
     required: true,
-    componentProps: {
-      options: [
-        { label: '男', value: Gender.male },
-        { label: '女', value: Gender.female },
-      ],
-    },
+    componentProps: sexOptions,
     label: '性别',
     colProps: { span: 18 },
   },

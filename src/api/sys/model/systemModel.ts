@@ -1,3 +1,4 @@
+import { Gender } from '../../demo/model/gender';
 import { BasicPageParams, BasicFetchResult } from '/@/api/model/baseModel';
 
 export type AccountParams = BasicPageParams & {
@@ -51,13 +52,13 @@ export interface MenuListItem {
   permission: string;
 }
 
-export interface RoleListItem {
+export interface StudentListItem {
   id: string;
-  roleName: string;
-  roleValue: string;
-  status: number;
-  orderNo: string;
-  createTime: string;
+  stuNum: string;
+  name: string;
+  dormName: string;
+  sex: Gender;
+  tel: string;
 }
 
 /**
@@ -69,6 +70,6 @@ export type DeptListGetResultModel = BasicFetchResult<DeptListItem>;
 
 export type MenuListGetResultModel = BasicFetchResult<MenuListItem>;
 
-export type RolePageListGetResultModel = BasicFetchResult<RoleListItem>;
+export type StudentPageListGetResultModel = BasicFetchResult<StudentListItem>;
 
-export type RoleListGetResultModel = RoleListItem[];
+export type RoleListGetResultModel = StudentListItem[];

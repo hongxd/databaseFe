@@ -4,32 +4,41 @@
     @register="registerDrawer"
     showFooter
     :title="getTitle"
-    width="50%"
+    width="500px"
     @ok="handleSubmit"
   >
-    <BasicForm @register="registerForm" />
+    <BasicForm @register="registerForm">
+      <!-- <template #menu="{ model, field }">
+        <BasicTree
+          v-model:value="model[field]"
+          :treeData="treeData"
+          :fieldNames="{ title: 'menuName', key: 'id' }"
+          checkable
+          toolbar
+          title="菜单分配"
+        />
+      </template> -->
+    </BasicForm>
   </BasicDrawer>
 </template>
 <script lang="ts">
   import { defineComponent, ref, computed, unref } from 'vue';
   import { BasicForm, useForm } from '/@/components/Form/index';
-  import { formSchema } from './menu.data';
+  import { formSchema } from './role.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
 
-  import { getMenuList } from '/@/api/demo/system';
-
   export default defineComponent({
-    name: 'MenuDrawer',
+    name: 'RoleDrawer',
     components: { BasicDrawer, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {
       const isUpdate = ref(true);
 
-      const [registerForm, { resetFields, setFieldsValue, updateSchema, validate }] = useForm({
-        labelWidth: 100,
+      const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
+        labelWidth: 90,
+        baseColProps: { span: 24 },
         schemas: formSchema,
         showActionButtonGroup: false,
-        baseColProps: { lg: 12, md: 24 },
       });
 
       const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
@@ -42,14 +51,9 @@
             ...data.record,
           });
         }
-        const treeData = await getMenuList();
-        updateSchema({
-          field: 'parentMenu',
-          componentProps: { treeData },
-        });
       });
 
-      const getTitle = computed(() => (!unref(isUpdate) ? '新增菜单' : '编辑菜单'));
+      const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'));
 
       async function handleSubmit() {
         try {
@@ -64,7 +68,12 @@
         }
       }
 
-      return { registerDrawer, registerForm, getTitle, handleSubmit };
+      return {
+        registerDrawer,
+        registerForm,
+        getTitle,
+        handleSubmit,
+      };
     },
   });
 </script>
