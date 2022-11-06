@@ -1,7 +1,6 @@
 export default {
   charts: {
     charts: '图表',
-    map: '地图',
     line: '折线图',
     pie: '饼图',
   },
@@ -63,12 +62,8 @@ export default {
     feat: '功能',
     tabs: '标签页操作',
     tabDetail: '标签详情页',
-    contextMenu: '右键菜单',
-    clickOutSide: 'ClickOutSide组件',
     imgPreview: '图片预览',
-    copy: '剪切板',
     msg: '消息提示',
-    watermark: '水印',
     ripple: '水波纹',
     fullScreen: '全屏',
     errorLog: '错误日志',

@@ -90,23 +90,6 @@ const feat: AppRouteModule = {
         },
       ],
     },
-
-    {
-      path: 'context-menu',
-      name: 'ContextMenuDemo',
-      component: () => import('/@/views/demo/feat/context-menu/index.vue'),
-      meta: {
-        title: t('routes.demo.feat.contextMenu'),
-      },
-    },
-    {
-      path: 'click-out-side',
-      name: 'ClickOutSideDemo',
-      component: () => import('/@/views/demo/feat/click-out-side/index.vue'),
-      meta: {
-        title: t('routes.demo.feat.clickOutSide'),
-      },
-    },
     {
       path: 'img-preview',
       name: 'ImgPreview',
@@ -116,27 +99,11 @@ const feat: AppRouteModule = {
       },
     },
     {
-      path: 'copy',
-      name: 'CopyDemo',
-      component: () => import('/@/views/demo/feat/copy/index.vue'),
-      meta: {
-        title: t('routes.demo.feat.copy'),
-      },
-    },
-    {
       path: 'msg',
       name: 'MsgDemo',
       component: () => import('/@/views/demo/feat/msg/index.vue'),
       meta: {
         title: t('routes.demo.feat.msg'),
-      },
-    },
-    {
-      path: 'watermark',
-      name: 'WatermarkDemo',
-      component: () => import('/@/views/demo/feat/watermark/index.vue'),
-      meta: {
-        title: t('routes.demo.feat.watermark'),
       },
     },
     {

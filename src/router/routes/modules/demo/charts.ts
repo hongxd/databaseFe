@@ -7,7 +7,6 @@ const charts: AppRouteModule = {
   path: '/charts',
   name: 'Charts',
   component: LAYOUT,
-  redirect: '/charts/echarts/map',
   meta: {
     orderNo: 500,
     icon: 'ion:bar-chart-outline',
@@ -23,14 +22,6 @@ const charts: AppRouteModule = {
       },
       redirect: '/charts/echarts/map',
       children: [
-        {
-          path: 'map',
-          name: 'Map',
-          component: () => import('/@/views/demo/charts/Map.vue'),
-          meta: {
-            title: t('routes.demo.charts.map'),
-          },
-        },
         {
           path: 'line',
           name: 'Line',
