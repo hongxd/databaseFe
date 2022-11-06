@@ -1,3 +1,5 @@
+import { RoleEnum } from '/@/enums/roleEnum';
+
 /**
  * @description: Login interface parameters
  */
@@ -8,7 +10,7 @@ export interface LoginParams {
 
 export interface RoleInfo {
   roleName: string;
-  value: string;
+  value: RoleEnum;
 }
 
 /**
