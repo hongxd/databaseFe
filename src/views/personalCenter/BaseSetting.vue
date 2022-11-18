@@ -2,7 +2,7 @@
   <CollapseContainer title="基本设置" :canExpan="false">
     <a-row :gutter="24">
       <a-col :span="14">
-        <BasicForm @register="register" />
+        <BasicForm @register="register" v-loading="loading" />
       </a-col>
       <a-col :span="10">
         <div class="change-avatar">
@@ -23,7 +23,7 @@
 </template>
 <script lang="ts">
   import { Button, Row, Col } from 'ant-design-vue';
-  import { computed, defineComponent, onMounted } from 'vue';
+  import { computed, defineComponent, onMounted, ref } from 'vue';
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { CollapseContainer } from '/@/components/Container';
   import { CropperAvatar } from '/@/components/Cropper';
@@ -54,10 +54,12 @@
         schemas: baseSetschemas,
         showActionButtonGroup: false,
       });
+      const loading = ref(true);
 
       onMounted(async () => {
         const data = await accountInfoApi();
         setFieldsValue(data);
+        loading.value = false;
       });
 
       const avatar = computed(() => {
@@ -74,12 +76,15 @@
 
       return {
         avatar,
+        loading,
         register,
         uploadApi,
         updateAvatar,
         handleSubmit: async () => {
+          loading.value = true;
           await updateAccountInfoApi(getFieldsValue() as any);
           createMessage.success('更新成功！');
+          loading.value = false;
         },
       };
     },

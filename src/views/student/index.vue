@@ -41,12 +41,13 @@
 
   import { columns, searchFormSchema } from './role.data';
   import { getStudentList, deleteStudentList } from '/@/api/sys/system';
-  import { message } from 'ant-design-vue';
+  import { useMessage } from '/@/hooks/web/useMessage';
 
   export default defineComponent({
     name: 'RoleManagement',
     components: { BasicTable, RoleDrawer, TableAction },
     setup() {
+      const { createMessage } = useMessage();
       const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload, getSelectRowKeys }] = useTable({
         title: '学生列表',
@@ -88,7 +89,7 @@
       async function handleDelete(ids: string[]) {
         if (ids.length > 0) {
           const successInfo = await deleteStudentList({ ids });
-          message.success(successInfo);
+          createMessage.success(successInfo);
           reload();
         }
       }

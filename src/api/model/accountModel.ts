@@ -1,11 +1,12 @@
 import { Gender } from './gender';
+import { RoleEnum } from '/@/enums/roleEnum';
 
 export interface GetAccountInfoModel {
   username: string;
   name: string;
   sex: Gender;
   tel: string;
-  role: 'admin' | 'student' | 'dormmanager';
+  role: keyof RoleEnum;
   dormBuildName?: string;
   dormBuildDetail?: string;
 }

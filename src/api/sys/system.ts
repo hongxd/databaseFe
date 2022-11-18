@@ -10,7 +10,7 @@ import {
   StudentPageListGetResultModel,
   RoleListGetResultModel,
 } from './model/systemModel';
-import { idsModel } from './model/idsModel';
+import { idsModel } from '../model/idsModel';
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {

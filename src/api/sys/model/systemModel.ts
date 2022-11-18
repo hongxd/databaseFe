@@ -1,4 +1,4 @@
-import { Gender } from '../../demo/model/gender';
+import { StudentListItem } from '../../model/studentModel';
 import { BasicPageParams, BasicFetchResult } from '/@/api/model/baseModel';
 
 export type AccountParams = BasicPageParams & {
@@ -50,15 +50,6 @@ export interface MenuListItem {
   icon: string;
   component: string;
   permission: string;
-}
-
-export interface StudentListItem {
-  id: string;
-  stuNum: string;
-  name: string;
-  dormName: string;
-  sex: Gender;
-  tel: string;
 }
 
 /**

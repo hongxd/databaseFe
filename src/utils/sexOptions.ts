@@ -1,4 +1,4 @@
-import { Gender } from '../api/demo/model/gender';
+import { Gender } from '../api/model/gender';
 
 export const sexOptions = {
   options: [
