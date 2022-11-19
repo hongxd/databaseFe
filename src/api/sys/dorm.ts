@@ -1,3 +1,4 @@
+import { BasicFetchResult } from '../model/baseModel';
 import { DormBuild } from '../model/dormModel';
 import { defHttp } from '/@/utils/http/axios';
 
@@ -7,4 +8,4 @@ enum Api {
   TOKEN_EXPIRED = '/user/tokenExpired',
 }
 
-export const dormInfoApi = () => defHttp.get<DormBuild[]>({ url: Api.DormBuild });
+export const dormInfoApi = () => defHttp.get<BasicFetchResult<DormBuild>>({ url: Api.DormBuild });

@@ -26,9 +26,7 @@
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { formSchema } from './role.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
-  import { dormInfoApi } from '/@/api/sys/dorm';
-  import { DormBuild } from '/@/api/model/dormModel';
-  import { AddStudent } from '/@/api/sys/student';
+  import { AddManager } from '/@/api/sys/manager';
   import { useMessage } from '/@/hooks/web/useMessage';
 
   export default defineComponent({
@@ -39,28 +37,18 @@
       const isUpdate = ref(true);
 
       const { createMessage } = useMessage();
-      const [registerForm, { resetFields, setFieldsValue, validate, updateSchema }] = useForm({
+      const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
         labelWidth: 90,
         baseColProps: { span: 24 },
         schemas: formSchema,
         showActionButtonGroup: false,
       });
-      let dorm: DormBuild[];
       let id: string | null = null;
 
       const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
         resetFields();
         setDrawerProps({ confirmLoading: false });
         isUpdate.value = !!data?.isUpdate;
-        if (!dorm) {
-          dorm = (await dormInfoApi()).list;
-          updateSchema({
-            field: 'dormBuildId',
-            componentProps: {
-              options: dorm.map((item) => ({ label: item.name, value: item.id })),
-            },
-          });
-        }
 
         id = null;
         if (unref(isUpdate)) {
@@ -77,7 +65,7 @@
         try {
           const values = await validate();
           setDrawerProps({ confirmLoading: true });
-          const success = await AddStudent({ ...values, id });
+          const success = await AddManager({ ...values, id });
           createMessage.success(success);
           closeDrawer();
           emit('success');

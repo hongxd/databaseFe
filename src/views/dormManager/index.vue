@@ -2,9 +2,9 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增学生 </a-button>
+        <a-button type="primary" @click="handleCreate"> 新增宿舍管理员 </a-button>
         <a-button type="danger" @click="() => handleDelete(getSelectRowKeys())">
-          删除所选学生
+          删除所选宿舍管理员
         </a-button>
       </template>
       <template #bodyCell="{ column, record }">
@@ -40,18 +40,18 @@
   import RoleDrawer from './RoleDrawer.vue';
 
   import { columns, searchFormSchema } from './role.data';
-  import { getStudentList, deleteStudentList } from '/@/api/sys/student';
+  import { getManagerList, deleteManagerList } from '../../api/sys/manager';
   import { useMessage } from '/@/hooks/web/useMessage';
 
   export default defineComponent({
-    name: 'Student',
+    name: 'DormManagement',
     components: { BasicTable, RoleDrawer, TableAction },
     setup() {
       const { createMessage } = useMessage();
       const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload, getSelectRowKeys }] = useTable({
-        title: '学生列表',
-        api: getStudentList,
+        title: '宿舍管理员列表',
+        api: getManagerList,
 
         columns,
         formConfig: {
@@ -88,7 +88,7 @@
 
       async function handleDelete(ids: string[]) {
         if (ids.length > 0) {
-          const successInfo = await deleteStudentList({ ids });
+          const successInfo = await deleteManagerList({ ids });
           createMessage.success(successInfo);
           reload();
         }

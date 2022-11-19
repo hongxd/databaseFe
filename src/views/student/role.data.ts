@@ -120,7 +120,7 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
   },
   {
-    field: 'DormBuildId',
+    field: 'dormBuildId',
     label: '所属宿舍楼',
     required: true,
     component: 'Select',
