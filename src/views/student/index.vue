@@ -2,9 +2,9 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增学生 </a-button>
+        <a-button type="primary" @click="handleCreate"> 新增 </a-button>
         <a-button type="danger" @click="() => handleDelete(getSelectRowKeys())">
-          删除所选学生
+          删除所选内容
         </a-button>
       </template>
       <template #bodyCell="{ column, record }">

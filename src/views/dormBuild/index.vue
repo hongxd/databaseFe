@@ -40,18 +40,18 @@
   import RoleDrawer from './RoleDrawer.vue';
 
   import { columns, searchFormSchema } from './role.data';
-  import { getManagerList, deleteManagerList } from '../../api/sys/manager';
+  import { getDormList, deleteDormList } from '/@/api/sys/dorm';
   import { useMessage } from '/@/hooks/web/useMessage';
 
   export default defineComponent({
-    name: 'DormManagement',
+    name: 'DormManageBuild',
     components: { BasicTable, RoleDrawer, TableAction },
     setup() {
       const { createMessage } = useMessage();
       const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload, getSelectRowKeys }] = useTable({
-        title: '宿舍管理员列表',
-        api: getManagerList,
+        title: '宿舍楼列表',
+        api: getDormList,
 
         columns,
         formConfig: {
@@ -88,7 +88,7 @@
 
       async function handleDelete(ids: string[]) {
         if (ids.length > 0) {
-          const successInfo = await deleteManagerList({ ids });
+          const successInfo = await deleteDormList({ ids });
           createMessage.success(successInfo);
           reload();
         }

@@ -26,10 +26,10 @@
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { formSchema } from './role.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
-  import { getDormList } from '/@/api/sys/dorm';
-  import { DormBuild } from '/@/api/sys/model/dormModel';
-  import { AddStudent } from '/@/api/sys/student';
+  import { AddDorm } from '/@/api/sys/dorm';
   import { useMessage } from '/@/hooks/web/useMessage';
+  import { getManagerList } from '/@/api/sys/manager';
+  import { ManagerModel } from '/@/api/sys/model/managerModel';
 
   export default defineComponent({
     name: 'RoleDrawer',
@@ -45,19 +45,20 @@
         schemas: formSchema,
         showActionButtonGroup: false,
       });
-      let dorm: DormBuild[];
       let id: string | null = null;
+      let dormBuild: ManagerModel[];
 
       const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
         resetFields();
         setDrawerProps({ confirmLoading: false });
         isUpdate.value = !!data?.isUpdate;
-        if (!dorm) {
-          dorm = (await getDormList()).list;
+        if (!dormBuild) {
+          dormBuild = (await getManagerList()).list;
+          const options = dormBuild.map((item) => ({ label: item.name, value: item.id }));
           updateSchema({
-            field: 'dormBuildId',
+            field: 'dormmanager',
             componentProps: {
-              options: dorm.map((item) => ({ label: item.name, value: item.id })),
+              options,
             },
           });
         }
@@ -77,7 +78,7 @@
         try {
           const values = await validate();
           setDrawerProps({ confirmLoading: true });
-          const success = await AddStudent({ ...values, id });
+          const success = await AddDorm({ ...values, id });
           createMessage.success(success);
           closeDrawer();
           emit('success');
