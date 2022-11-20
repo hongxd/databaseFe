@@ -27,11 +27,6 @@ export const columns: BasicColumn[] = [
     },
     width: 80,
   },
-  {
-    title: '管理的宿舍',
-    dataIndex: 'dormBuildName',
-    width: 180,
-  },
 ];
 
 export const searchFormSchema: FormSchema[] = [
@@ -48,14 +43,15 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 8 },
   },
   {
-    field: 'tel',
-    label: '电话',
-    component: 'Input',
+    field: 'sex',
+    label: '性别',
+    component: 'Select',
     colProps: { span: 8 },
+    componentProps: sexOptions,
   },
   {
-    field: 'dormBuildName',
-    label: '管理的宿舍',
+    field: 'tel',
+    label: '电话',
     component: 'Input',
     colProps: { span: 8 },
   },

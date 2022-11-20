@@ -30,7 +30,7 @@
   import { useMessage } from '/@/hooks/web/useMessage';
 
   export default defineComponent({
-    name: 'RoleDrawer',
+    name: 'DormMDrawer',
     components: { BasicDrawer, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {

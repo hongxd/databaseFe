@@ -32,7 +32,7 @@
   import { useMessage } from '/@/hooks/web/useMessage';
 
   export default defineComponent({
-    name: 'RoleDrawer',
+    name: 'StudentDrawer',
     components: { BasicDrawer, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {
@@ -57,7 +57,7 @@
           updateSchema({
             field: 'dormBuildId',
             componentProps: {
-              options: dorm.map((item) => ({ label: item.name, value: item.id })),
+              options: dorm.map((item) => ({ label: item.name ?? '', value: item.id })),
             },
           });
         }

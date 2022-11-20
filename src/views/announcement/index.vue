@@ -40,18 +40,18 @@
   import RoleDrawer from './RoleDrawer.vue';
 
   import { columns, searchFormSchema } from './role.data';
+  import { getAnnouncementList, deleteAnnouncement } from '/@/api/sys/announcement';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { deleteManagerList, getManagerList } from '/@/api/sys/manager';
 
   export default defineComponent({
-    name: 'DormManagement',
+    name: 'Announcement',
     components: { BasicTable, RoleDrawer, TableAction },
     setup() {
       const { createMessage } = useMessage();
       const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload, getSelectRowKeys }] = useTable({
-        title: '宿舍管理员列表',
-        api: getManagerList,
+        title: '公告列表',
+        api: getAnnouncementList,
 
         columns,
         formConfig: {
@@ -88,7 +88,7 @@
 
       async function handleDelete(ids: string[]) {
         if (ids.length > 0) {
-          const successInfo = await deleteManagerList({ ids });
+          const successInfo = await deleteAnnouncement({ ids });
           createMessage.success(successInfo);
           reload();
         }

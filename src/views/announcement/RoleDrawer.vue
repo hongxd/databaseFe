@@ -26,42 +26,29 @@
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { formSchema } from './role.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
-  import { AddDorm } from '/@/api/sys/dorm';
+  import { AddManager } from '/@/api/sys/manager';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { getManagerList } from '/@/api/sys/manager';
-  import { ManagerModel } from '/@/api/sys/model/managerModel';
 
   export default defineComponent({
-    name: 'DormBDrawer',
+    name: 'AnnouncementDrawer',
     components: { BasicDrawer, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {
       const isUpdate = ref(true);
 
       const { createMessage } = useMessage();
-      const [registerForm, { resetFields, setFieldsValue, validate, updateSchema }] = useForm({
+      const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
         labelWidth: 90,
         baseColProps: { span: 24 },
         schemas: formSchema,
         showActionButtonGroup: false,
       });
       let id: string | null = null;
-      let managerList: ManagerModel[];
 
       const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
         resetFields();
         setDrawerProps({ confirmLoading: false });
         isUpdate.value = !!data?.isUpdate;
-        if (!managerList) {
-          managerList = (await getManagerList()).list;
-          const options = managerList.map((item) => ({ label: item.userName, value: item.id }));
-          updateSchema({
-            field: 'dormmanager',
-            componentProps: {
-              options,
-            },
-          });
-        }
 
         id = null;
         if (unref(isUpdate)) {
@@ -78,7 +65,7 @@
         try {
           const values = await validate();
           setDrawerProps({ confirmLoading: true });
-          const success = await AddDorm({ ...values, id });
+          const success = await AddManager({ ...values, id });
           createMessage.success(success);
           closeDrawer();
           emit('success');
