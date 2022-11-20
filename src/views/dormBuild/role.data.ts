@@ -27,11 +27,17 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 8 },
   },
   {
-    field: 'managerName',
-    label: '管理员',
+    field: 'detail',
+    label: '详细信息',
     component: 'Input',
-    colProps: { span: 8 },
+    colProps: { span: 10 },
   },
+  // {
+  //   field: 'managerName',
+  //   label: '管理员',
+  //   component: 'Input',
+  //   colProps: { span: 8 },
+  // },
 ];
 
 export const formSchema: FormSchema[] = [

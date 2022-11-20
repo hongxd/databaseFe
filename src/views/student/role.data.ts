@@ -80,6 +80,13 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 8 },
   },
   {
+    field: 'sex',
+    label: '性别',
+    component: 'Select',
+    colProps: { span: 8 },
+    componentProps: sexOptions,
+  },
+  {
     field: 'dormName',
     label: '所属宿舍楼',
     component: 'Input',
