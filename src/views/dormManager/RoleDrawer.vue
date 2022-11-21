@@ -59,7 +59,7 @@
         }
       });
 
-      const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'));
+      const getTitle = computed(() => (!unref(isUpdate) ? '新增管理员' : '编辑管理员'));
 
       async function handleSubmit() {
         try {

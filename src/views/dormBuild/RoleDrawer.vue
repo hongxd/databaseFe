@@ -72,7 +72,7 @@
         }
       });
 
-      const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'));
+      const getTitle = computed(() => (!unref(isUpdate) ? '新增宿舍楼' : '编辑宿舍楼'));
 
       async function handleSubmit() {
         try {

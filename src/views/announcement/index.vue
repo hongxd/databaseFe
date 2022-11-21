@@ -29,15 +29,12 @@
         </template>
       </template>
     </BasicTable>
-    <RoleDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { useDrawer } from '/@/components/Drawer';
-  import RoleDrawer from './RoleDrawer.vue';
 
   import { columns, searchFormSchema } from './role.data';
   import { getAnnouncementList, deleteAnnouncement } from '/@/api/sys/announcement';
@@ -45,10 +42,9 @@
 
   export default defineComponent({
     name: 'Announcement',
-    components: { BasicTable, RoleDrawer, TableAction },
+    components: { BasicTable, TableAction },
     setup() {
       const { createMessage } = useMessage();
-      const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload, getSelectRowKeys }] = useTable({
         title: '公告列表',
         api: getAnnouncementList,
@@ -73,17 +69,10 @@
         },
       });
 
-      function handleCreate() {
-        openDrawer(true, {
-          isUpdate: false,
-        });
-      }
+      function handleCreate() {}
 
       function handleEdit(record: Recordable) {
-        openDrawer(true, {
-          record,
-          isUpdate: true,
-        });
+        record;
       }
 
       async function handleDelete(ids: string[]) {
@@ -100,7 +89,6 @@
 
       return {
         registerTable,
-        registerDrawer,
         handleCreate,
         handleEdit,
         getSelectRowKeys,

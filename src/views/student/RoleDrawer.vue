@@ -71,7 +71,7 @@
         }
       });
 
-      const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'));
+      const getTitle = computed(() => (!unref(isUpdate) ? '新增学生' : '编辑学生'));
 
       async function handleSubmit() {
         try {
