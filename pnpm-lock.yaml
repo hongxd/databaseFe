@@ -132,7 +132,7 @@ dependencies:
   cropperjs: 1.5.12
   crypto-js: 4.1.1
   dayjs: 1.11.1
-  echarts: 5.3.2
+  echarts: 5.4.0
   intro.js: 5.1.0
   lodash-es: 4.17.21
   mockjs: 1.1.0
@@ -4256,11 +4256,11 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
 
-  /echarts/5.3.2:
-    resolution: {integrity: sha512-LWCt7ohOKdJqyiBJ0OGBmE9szLdfA9sGcsMEi+GGoc6+Xo75C+BkcT/6NNGRHAWtnQl2fNow05AQjznpap28TQ==}
+  /echarts/5.4.0:
+    resolution: {integrity: sha512-uPsO9VRUIKAdFOoH3B0aNg7NRVdN7aM39/OjovjO9MwmWsAkfGyeXJhK+dbRi51iDrQWliXV60/XwLA7kg3z0w==}
     dependencies:
       tslib: 2.3.0
-      zrender: 5.3.1
+      zrender: 5.4.0
     dev: false
 
   /ee-first/1.1.1:
@@ -10219,8 +10219,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zrender/5.3.1:
-    resolution: {integrity: sha512-7olqIjy0gWfznKr6vgfnGBk7y4UtdMvdwFmK92vVQsQeDPyzkHW1OlrLEKg6GHz1W5ePf0FeN1q2vkl/HFqhXw==}
+  /zrender/5.4.0:
+    resolution: {integrity: sha512-rOS09Z2HSVGFs2dn/TuYk5BlCaZcVe8UDLLjj1ySYF828LATKKdxuakSZMvrDz54yiKPDYVfjdKqcX8Jky3BIA==}
     dependencies:
       tslib: 2.3.0
     dev: false
