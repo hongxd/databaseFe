@@ -1,5 +1,7 @@
+import { h } from 'vue';
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
+import { Tinymce } from '/@/components/Tinymce/index';
 
 export const columns: BasicColumn[] = [
   {
@@ -36,14 +38,8 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
   {
-    label: '日期',
-    field: 'date',
-    required: true,
-    component: 'Input',
-  },
-  {
-    field: 'noticePerson',
-    label: '发布人',
+    label: '公告标题',
+    field: 'title',
     required: true,
     component: 'Input',
   },
@@ -52,5 +48,16 @@ export const formSchema: FormSchema[] = [
     label: '公告内容',
     required: true,
     component: 'Input',
+    defaultValue: '',
+    rules: [{ required: true }],
+    render: ({ model, field }) => {
+      return h(Tinymce, {
+        value: model[field],
+        onChange: (value: string) => {
+          model[field] = value;
+        },
+        showImageUpload: false,
+      });
+    },
   },
 ];

@@ -14,10 +14,6 @@
           <TableAction
             :actions="[
               {
-                icon: 'clarity:note-edit-line',
-                onClick: handleEdit.bind(null, record),
-              },
-              {
                 icon: 'ant-design:delete-outlined',
                 color: 'error',
                 popConfirm: {
@@ -35,9 +31,7 @@
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-
   import { columns, searchFormSchema } from './role.data';
   import { getAnnouncementList, deleteAnnouncement } from '/@/api/sys/announcement';
   import { useMessage } from '/@/hooks/web/useMessage';
@@ -72,10 +66,6 @@
         },
       });
 
-      function handleEdit(record: Recordable) {
-        record;
-      }
-
       async function handleDelete(ids: string[]) {
         if (ids.length > 0) {
           const successInfo = await deleteAnnouncement({ ids });
@@ -84,16 +74,10 @@
         }
       }
 
-      function handleSuccess() {
-        reload();
-      }
-
       return {
         registerTable,
-        handleEdit,
         getSelectRowKeys,
         handleDelete,
-        handleSuccess,
         PageWrapper,
       };
     },
