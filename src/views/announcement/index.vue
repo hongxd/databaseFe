@@ -2,7 +2,9 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增 </a-button>
+        <router-link to="/announcement/add">
+          <a-button type="primary">新增 </a-button>
+        </router-link>
         <a-button type="danger" @click="() => handleDelete(getSelectRowKeys())">
           删除所选内容
         </a-button>
@@ -39,6 +41,7 @@
   import { columns, searchFormSchema } from './role.data';
   import { getAnnouncementList, deleteAnnouncement } from '/@/api/sys/announcement';
   import { useMessage } from '/@/hooks/web/useMessage';
+  import { PageWrapper } from '/@/components/Page';
 
   export default defineComponent({
     name: 'Announcement',
@@ -69,8 +72,6 @@
         },
       });
 
-      function handleCreate() {}
-
       function handleEdit(record: Recordable) {
         record;
       }
@@ -89,11 +90,11 @@
 
       return {
         registerTable,
-        handleCreate,
         handleEdit,
         getSelectRowKeys,
         handleDelete,
         handleSuccess,
+        PageWrapper,
       };
     },
   });

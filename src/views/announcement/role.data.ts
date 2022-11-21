@@ -5,17 +5,17 @@ export const columns: BasicColumn[] = [
   {
     title: '日期',
     dataIndex: 'date',
-    width: 200,
+    width: 180,
+  },
+  {
+    title: '公告标题',
+    dataIndex: 'title',
+    width: 230,
   },
   {
     title: '发布人',
     dataIndex: 'noticePerson',
-    width: 150,
-  },
-  {
-    title: '公告内容',
-    dataIndex: 'content',
-    width: 180,
+    width: 120,
   },
 ];
 

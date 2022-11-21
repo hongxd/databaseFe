@@ -49,25 +49,6 @@ const feat: AppRouteModule = {
 
       children: [
         {
-          path: 'flat',
-          name: 'BreadcrumbFlatDemo',
-          component: () => import('/@/views/demo/feat/breadcrumb/FlatList.vue'),
-          meta: {
-            title: t('routes.demo.feat.breadcrumbFlat'),
-          },
-        },
-        {
-          path: 'flatDetail',
-          name: 'BreadcrumbFlatDetailDemo',
-          component: () => import('/@/views/demo/feat/breadcrumb/FlatListDetail.vue'),
-          meta: {
-            title: t('routes.demo.feat.breadcrumbFlatDetail'),
-            hideMenu: true,
-            hideTab: true,
-            currentActiveMenu: '/feat/breadcrumb/flat',
-          },
-        },
-        {
           path: 'children',
           name: 'BreadcrumbChildrenDemo',
           component: () => import('/@/views/demo/feat/breadcrumb/ChildrenList.vue'),

@@ -73,14 +73,9 @@ export default {
     menu1: 'Menu带参1',
     menu2: 'Menu带参2',
     breadcrumb: '面包屑导航',
-    breadcrumbFlat: '平级模式',
     breadcrumbFlatDetail: '平级详情',
     breadcrumbChildren: '层级模式',
     breadcrumbChildrenDetail: '层级详情',
-  },
-  flow: {
-    name: '图形编辑器',
-    flowChart: '流程图',
   },
   form: {
     form: 'Form',
