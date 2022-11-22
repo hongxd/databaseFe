@@ -7,7 +7,7 @@
     width="500px"
     @ok="handleSubmit"
   >
-    <BasicForm @register="registerForm" @field-value-change="valueChange" />
+    <BasicForm @register="registerForm" />
   </BasicDrawer>
 </template>
 <script lang="ts">
@@ -15,13 +15,13 @@
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { formSchema } from './role.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
-  import { getDormList } from '/@/api/sys/dorm';
-  import { AddStudent } from '/@/api/sys/student';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { getDormitoryList } from '/@/api/sys/dormitory';
+  import { getDormList } from '/@/api/sys/dorm';
+  import { AddDormitory } from '/@/api/sys/dormitory';
+  import { DormBuild } from '/@/api/sys/model/dormModel';
 
   export default defineComponent({
-    name: 'StudentDrawer',
+    name: 'DormitoryDrawer',
     components: { BasicDrawer, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {
@@ -33,9 +33,9 @@
         baseColProps: { span: 24 },
         schemas: formSchema,
         showActionButtonGroup: false,
-        autoSubmitOnEnter: true,
       });
       let id: string | null = null;
+      let list: DormBuild[];
 
       const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
         resetFields();
@@ -49,15 +49,25 @@
             ...data.record,
           });
         }
+        if (!list) {
+          list = (await getDormList()).list;
+          const options = list.map((item) => ({ label: item.name, value: item.id }));
+          updateSchema({
+            field: 'dormBuildId',
+            componentProps: {
+              options,
+            },
+          });
+        }
       });
 
-      const getTitle = computed(() => (!unref(isUpdate) ? '新增学生' : '编辑学生'));
+      const getTitle = computed(() => (!unref(isUpdate) ? '新增寝室' : '编辑寝室'));
 
       async function handleSubmit() {
         try {
           const values = await validate();
           setDrawerProps({ confirmLoading: true });
-          const success = await AddStudent({ ...values, id });
+          const success = await AddDormitory({ ...values, id });
           createMessage.success(success);
           closeDrawer();
           emit('success');
@@ -65,41 +75,11 @@
           setDrawerProps({ confirmLoading: false });
         }
       }
-      const valueChange = async (key: string, value: string) => {
-        switch (key) {
-          case 'sex': {
-            const { list } = await getDormList({ sex: value });
-            updateSchema({
-              field: 'dormBuildId',
-              componentProps: {
-                options: list.map((item) => ({ label: item.name ?? '', value: item.id })),
-              },
-            });
-            break;
-          }
-          case 'dormBuildId': {
-            const { list } = await getDormitoryList({ dormBuildId: value });
-            updateSchema({
-              field: 'dormitoryId',
-              componentProps: {
-                options: list.map((item) => ({ label: item.name ?? '', value: item.id })),
-              },
-            });
-            break;
-          }
-          default:
-            break;
-        }
-        if (key === 'dormBuildId') {
-        }
-        console.log(key, value);
-      };
 
       return {
         registerDrawer,
         registerForm,
         getTitle,
-        valueChange,
         handleSubmit,
       };
     },

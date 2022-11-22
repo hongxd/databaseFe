@@ -1,5 +1,7 @@
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
+import { mapGender } from '/@/utils/mapGender';
+import { sexOptions } from '/@/utils/sexOptions';
 
 export const columns: BasicColumn[] = [
   {
@@ -17,6 +19,14 @@ export const columns: BasicColumn[] = [
     dataIndex: 'managerName',
     width: 180,
   },
+  {
+    title: '性质',
+    dataIndex: 'sex',
+    width: 160,
+    customRender(opt) {
+      return mapGender(opt.value) + '生宿舍';
+    },
+  },
 ];
 
 export const searchFormSchema: FormSchema[] = [
@@ -31,6 +41,18 @@ export const searchFormSchema: FormSchema[] = [
     label: '管理员',
     component: 'Input',
     colProps: { span: 8 },
+  },
+  {
+    field: 'sex',
+    label: '性质',
+    component: 'Select',
+    colProps: { span: 8 },
+    componentProps: {
+      options: sexOptions.options.map((item) => ({
+        label: item.label + '生宿舍楼',
+        value: item.value,
+      })),
+    },
   },
   {
     field: 'detail',
@@ -51,6 +73,18 @@ export const formSchema: FormSchema[] = [
     field: 'dormmanager',
     label: '管理员',
     component: 'Select',
+  },
+  {
+    field: 'sex',
+    label: '性质',
+    required: true,
+    component: 'Select',
+    componentProps: {
+      options: sexOptions.options.map((item) => ({
+        label: item.label + '生宿舍楼',
+        value: item.value,
+      })),
+    },
   },
   {
     field: 'detail',

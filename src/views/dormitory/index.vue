@@ -33,31 +33,33 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, onMounted } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useDrawer } from '/@/components/Drawer';
   import RoleDrawer from './RoleDrawer.vue';
 
   import { columns, searchFormSchema } from './role.data';
-  import { getDormList, deleteDormList } from '/@/api/sys/dorm';
   import { useMessage } from '/@/hooks/web/useMessage';
+  import { deleteDormitoryList, getDormitoryList } from '/@/api/sys/dormitory';
+  import { getDormList } from '/@/api/sys/dorm';
 
   export default defineComponent({
-    name: 'DormManageBuild',
+    name: 'Dormitory',
     components: { BasicTable, RoleDrawer, TableAction },
     setup() {
       const { createMessage } = useMessage();
       const [registerDrawer, { openDrawer }] = useDrawer();
-      const [registerTable, { reload, getSelectRowKeys }] = useTable({
-        title: '楼宇列表',
-        api: getDormList,
+      const [registerTable, { reload, getSelectRowKeys, getForm }] = useTable({
+        title: '寝室列表',
+        api: getDormitoryList,
 
         columns,
         formConfig: {
           labelWidth: 120,
           schemas: searchFormSchema,
         },
+        immediate: false,
         useSearchForm: true,
         showTableSetting: true,
         bordered: true,
@@ -71,6 +73,18 @@
           // slots: { customRender: 'action' },
           fixed: undefined,
         },
+      });
+      onMounted(async () => {
+        const form = getForm();
+        const { list } = await getDormList();
+        form.updateSchema({
+          field: 'dormBuildId',
+          componentProps: {
+            options: list.map((item) => ({ label: item.name ?? '', value: item.id })),
+          },
+          defaultValue: list.length > 0 ? list[0].id : '',
+        });
+        form.submit();
       });
 
       function handleCreate() {
@@ -88,7 +102,7 @@
 
       async function handleDelete(ids: string[]) {
         if (ids.length > 0) {
-          const successInfo = await deleteDormList({ ids });
+          const successInfo = await deleteDormitoryList({ ids });
           createMessage.success(successInfo);
           reload();
         }

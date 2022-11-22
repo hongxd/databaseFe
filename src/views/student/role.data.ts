@@ -60,8 +60,13 @@ export const columns: BasicColumn[] = [
     width: 80,
   },
   {
-    title: '所属宿舍楼',
+    title: '所属楼宇',
     dataIndex: 'dormName',
+    width: 180,
+  },
+  {
+    title: '所属寝室',
+    dataIndex: 'dormitoryName',
     width: 180,
   },
 ];
@@ -88,7 +93,13 @@ export const searchFormSchema: FormSchema[] = [
   },
   {
     field: 'dormName',
-    label: '所属宿舍楼',
+    label: '所属楼宇',
+    component: 'Input',
+    colProps: { span: 8 },
+  },
+  {
+    field: 'dormitoryName',
+    label: '所属寝室',
     component: 'Input',
     colProps: { span: 8 },
   },
@@ -128,7 +139,13 @@ export const formSchema: FormSchema[] = [
   },
   {
     field: 'dormBuildId',
-    label: '所属宿舍楼',
+    label: '所属楼宇',
+    required: true,
+    component: 'Select',
+  },
+  {
+    field: 'dormitoryId',
+    label: '所属寝室',
     required: true,
     component: 'Select',
   },
