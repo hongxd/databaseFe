@@ -7,8 +7,7 @@
   import { defineComponent } from 'vue';
   import { BasicTable, useTable } from '/@/components/Table';
   import { getBasicColumns } from './tableData';
-
-  import { demoListApi } from '/@/api/demo/table';
+  const demoListApi = async () => {};
 
   export default defineComponent({
     components: { BasicTable },

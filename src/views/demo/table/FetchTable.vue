@@ -13,8 +13,8 @@
   import { BasicTable, useTable } from '/@/components/Table';
   import { getBasicColumns } from './tableData';
   import { PageWrapper } from '/@/components/Page';
+  const demoListApi = async () => {};
 
-  import { demoListApi } from '/@/api/demo/table';
   export default defineComponent({
     components: { BasicTable, PageWrapper },
     setup() {

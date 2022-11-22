@@ -65,8 +65,8 @@
   import { CollapseContainer } from '/@/components/Container/index';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { PageWrapper } from '/@/components/Page';
-  import { areaRecord } from '/@/api/demo/cascader';
 
+  const areaRecord = () => {};
   const schemas: FormSchema[] = [
     {
       field: 'field1',

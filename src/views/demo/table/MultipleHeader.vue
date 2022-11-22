@@ -8,7 +8,7 @@
   import { BasicTable, useTable } from '/@/components/Table';
   import { getMultipleHeaderColumns } from './tableData';
 
-  import { demoListApi } from '/@/api/demo/table';
+  const demoListApi = async () => {};
   export default defineComponent({
     components: { BasicTable },
     setup() {
