@@ -39,39 +39,6 @@ const feat: AppRouteModule = {
       ],
     },
     {
-      path: 'breadcrumb',
-      name: 'BreadcrumbDemo',
-      redirect: '/feat/breadcrumb/flat',
-      component: getParentLayout('BreadcrumbDemo'),
-      meta: {
-        title: t('routes.demo.feat.breadcrumb'),
-      },
-
-      children: [
-        {
-          path: 'children',
-          name: 'BreadcrumbChildrenDemo',
-          component: () => import('/@/views/demo/feat/breadcrumb/ChildrenList.vue'),
-          meta: {
-            title: t('routes.demo.feat.breadcrumbChildren'),
-          },
-          children: [
-            {
-              path: 'childrenDetail',
-              name: 'BreadcrumbChildrenDetailDemo',
-              component: () => import('/@/views/demo/feat/breadcrumb/ChildrenListDetail.vue'),
-              meta: {
-                currentActiveMenu: '/feat/breadcrumb/children',
-                title: t('routes.demo.feat.breadcrumbChildrenDetail'),
-                //hideTab: true,
-                // hideMenu: true,
-              },
-            },
-          ],
-        },
-      ],
-    },
-    {
       path: 'img-preview',
       name: 'ImgPreview',
       component: () => import('/@/views/demo/feat/img-preview/index.vue'),
@@ -93,14 +60,6 @@ const feat: AppRouteModule = {
       component: () => import('/@/views/demo/feat/ripple/index.vue'),
       meta: {
         title: t('routes.demo.feat.ripple'),
-      },
-    },
-    {
-      path: 'full-screen',
-      name: 'FullScreenDemo',
-      component: () => import('/@/views/demo/feat/full-screen/index.vue'),
-      meta: {
-        title: t('routes.demo.feat.fullScreen'),
       },
     },
     {

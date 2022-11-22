@@ -21,8 +21,6 @@ export function configStyleImportPlugin(_isBuild: boolean) {
             'menu-item',
             'menu-divider',
             'menu-item-group',
-            'breadcrumb-item',
-            'breadcrumb-separator',
             'form-item',
             'step',
             'select-option',

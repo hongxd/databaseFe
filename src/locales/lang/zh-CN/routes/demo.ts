@@ -63,10 +63,6 @@ export default {
     menu: 'Menu带参',
     menu1: 'Menu带参1',
     menu2: 'Menu带参2',
-    breadcrumb: '面包屑导航',
-    breadcrumbFlatDetail: '平级详情',
-    breadcrumbChildren: '层级模式',
-    breadcrumbChildrenDetail: '层级详情',
   },
   form: {
     form: 'Form',

@@ -5,14 +5,14 @@ import { Tinymce } from '/@/components/Tinymce/index';
 
 export const columns: BasicColumn[] = [
   {
-    title: '日期',
-    dataIndex: 'date',
-    width: 180,
-  },
-  {
     title: '公告标题',
     dataIndex: 'title',
     width: 230,
+  },
+  {
+    title: '日期',
+    dataIndex: 'date',
+    width: 180,
   },
   {
     title: '发布人',
@@ -22,6 +22,12 @@ export const columns: BasicColumn[] = [
 ];
 
 export const searchFormSchema: FormSchema[] = [
+  {
+    field: 'title',
+    label: '公告标题',
+    component: 'Input',
+    colProps: { span: 8 },
+  },
   {
     field: 'date',
     label: '日期',
