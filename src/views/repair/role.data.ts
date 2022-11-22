@@ -1,5 +1,7 @@
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
+import { mapStatus } from '/@/utils/mapStatus';
+import { statusOptions } from '/@/utils/statusOptions';
 
 export const columns: BasicColumn[] = [
   {
@@ -15,6 +17,9 @@ export const columns: BasicColumn[] = [
   {
     title: '维修状态',
     dataIndex: 'status',
+    customRender(opt) {
+      return mapStatus(opt.value);
+    },
     width: 180,
   },
   {
@@ -47,6 +52,7 @@ export const searchFormSchema: FormSchema[] = [
     label: '维修状态',
     component: 'Select',
     colProps: { span: 8 },
+    componentProps: statusOptions,
   },
   {
     field: 'dormitoryName',
