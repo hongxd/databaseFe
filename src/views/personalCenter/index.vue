@@ -20,8 +20,7 @@
   import { settingList } from './data';
 
   import BaseSetting from './BaseSetting.vue';
-  import SecureSetting from './SecureSetting.vue';
-  import MsgNotify from './MsgNotify.vue';
+  import ChangePassword from './ChangePassword.vue';
 
   export default defineComponent({
     components: {
@@ -29,8 +28,7 @@
       Tabs,
       TabPane: Tabs.TabPane,
       BaseSetting,
-      SecureSetting,
-      MsgNotify,
+      ChangePassword,
     },
     setup() {
       return {

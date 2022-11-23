@@ -1,4 +1,4 @@
-import { Gender } from './gender';
+import { Gender } from '../../model/gender';
 import { RoleEnum } from '/@/enums/roleEnum';
 
 export interface GetAccountInfoModel {
@@ -9,4 +9,9 @@ export interface GetAccountInfoModel {
   role: keyof RoleEnum;
   dormBuildName?: string;
   dormBuildDetail?: string;
+}
+export interface PasswordFromModel {
+  oldPassword: string;
+  newPassword: string;
+  password: string;
 }

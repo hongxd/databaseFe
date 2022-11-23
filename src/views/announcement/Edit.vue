@@ -3,9 +3,6 @@
     <CollapseContainer title="请按要求填写下列表单">
       <BasicForm @register="registerForm" @submit="handleSubmit" />
     </CollapseContainer>
-    <BasicModal @register="register" v-bind="$attrs" title="提示" :minHeight="0" @ok="exist">
-      你的操作将不会被保存，是否确认退出？
-    </BasicModal>
     <BasicModal @register="register" v-bind="$attrs" title="提示" :minHeight="0" @ok="submit">
       公告一旦发出就无法删除，请确保公告内容无误
     </BasicModal>
@@ -42,8 +39,8 @@
     resetButtonOptions: {
       text: '返回',
       color: 'error',
-      onClick(_) {
-        openModal();
+      onClick() {
+        exist();
         return;
       },
     },

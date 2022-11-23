@@ -1,4 +1,4 @@
-import { StudentListItem } from '../../model/studentModel';
+import { StudentListItem } from './studentModel';
 import { BasicPageParams, BasicFetchResult } from '/@/api/model/baseModel';
 
 export type AccountParams = BasicPageParams & {

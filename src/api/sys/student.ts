@@ -1,5 +1,5 @@
 import { idsModel } from '../model/idsModel';
-import { StudentListItem } from '../model/studentModel';
+import { StudentListItem } from './model/studentModel';
 import { RolePageParams, StudentPageListGetResultModel } from './model/systemModel';
 import { defHttp } from '/@/utils/http/axios';
 
