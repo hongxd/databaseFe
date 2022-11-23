@@ -61,7 +61,6 @@ export default {
   },
   form: {
     form: 'Form',
-    basic: '基础表单',
     useForm: 'useForm',
     refForm: 'RefForm',
     advancedForm: '可收缩表单',
@@ -76,7 +75,6 @@ export default {
     page: '页面',
 
     form: '表单页',
-    formBasic: '基础表单',
     formStep: '分步表单',
     formHigh: '高级表单',
 

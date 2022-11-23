@@ -11,25 +11,34 @@
               {{ item.date }}
             </template>
             <!-- eslint-disable-next-line -->
-            <template #title> {{ item.username }} <span v-html="item.desc"> </span> </template>
+            <template #title> {{ item.name }}: &nbsp; <strong v-html="item.desc"> </strong> </template>
           </ListItemMeta>
         </ListItem>
       </template>
     </List>
   </Card>
+  <BasicModal @register="register" v-bind="$attrs" :title="title" @ok="close">
+    <article v-html="content"></article>
+  </BasicModal>
 </template>
 <script lang="ts" setup>
   import { Card, List } from 'ant-design-vue';
-  import { computed } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
   import { useRouter } from 'vue-router';
   import { DynamicInfoItem } from './data';
   import { BasicFetchResult } from '/@/api/model/baseModel';
   import { AnnounceMent } from '/@/api/sys/model/announcementModel';
   import { formatTime } from '/@/utils/formatTime';
+  import { BasicModal, useModal } from '/@/components/Modal';
+  import { getAnnouncementContent } from '/@/api/sys/announcement';
+  const [register, { openModal, setModalProps }] = useModal();
 
   const props = defineProps<{
     announcement: BasicFetchResult<AnnounceMent>;
   }>();
+  const close = () => {
+    setModalProps({ visible: false });
+  };
   const ListItem = List.Item;
   const ListItemMeta = List.Item.Meta;
   const router = useRouter();
@@ -45,7 +54,17 @@
       name: item.noticePerson,
     }));
   });
-  const readAnnouncement = (id: string) => {
-    console.log(id);
+  onMounted(() => {
+    setModalProps({
+      showCancelBtn: false,
+    });
+  });
+  const content = ref('');
+  const title = ref('');
+  const readAnnouncement = async (id: string) => {
+    const res = await getAnnouncementContent(id);
+    content.value = res.content;
+    title.value = res.title;
+    openModal();
   };
 </script>

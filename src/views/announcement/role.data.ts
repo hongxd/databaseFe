@@ -2,6 +2,7 @@ import { h } from 'vue';
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { Tinymce } from '/@/components/Tinymce/index';
+import { formatTime } from '/@/utils/formatTime';
 
 export const columns: BasicColumn[] = [
   {
@@ -13,6 +14,10 @@ export const columns: BasicColumn[] = [
     title: '日期',
     dataIndex: 'date',
     width: 180,
+    sorter: true,
+    customRender(opt) {
+      return formatTime(opt.value);
+    },
   },
   {
     title: '发布人',
@@ -29,17 +34,17 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 8 },
   },
   {
-    field: 'date',
-    label: '日期',
-    component: 'Input',
-    colProps: { span: 8 },
-  },
-  {
     field: 'noticePerson',
     label: '发布人',
     component: 'Input',
     colProps: { span: 8 },
   },
+  // {
+  //   field: 'date',
+  //   label: '日期',
+  //   component: 'RangePicker',
+  //   colProps: { span: 8 },
+  // },
 ];
 
 export const formSchema: FormSchema[] = [

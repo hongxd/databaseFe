@@ -70,7 +70,7 @@
           const success = await AddDormitory({ ...values, id });
           createMessage.success(success);
           closeDrawer();
-          emit('success');
+          emit('success', success);
         } finally {
           setDrawerProps({ confirmLoading: false });
         }

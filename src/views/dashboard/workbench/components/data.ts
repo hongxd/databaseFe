@@ -7,10 +7,11 @@ interface GroupItem {
   group: string;
 }
 
-interface NavItem {
+export interface NavItem {
   title: string;
   icon: string;
   color: string;
+  route: string;
 }
 
 export interface DynamicInfoItem {
@@ -22,34 +23,60 @@ export interface DynamicInfoItem {
 
 export const navItems: NavItem[] = [
   {
-    title: '首页',
-    icon: 'ion:home-outline',
-    color: '#1fdaca',
-  },
-  {
-    title: '仪表盘',
-    icon: 'ion:grid-outline',
-    color: '#bf0c2c',
-  },
-  {
-    title: '组件',
+    title: '个人中心',
     icon: 'ion:layers-outline',
     color: '#e18525',
+    route: 'PersonalCenter',
   },
   {
-    title: '系统管理',
+    title: '管理员管理',
     icon: 'ion:settings-outline',
     color: '#3fb27f',
+    route: 'DormManager',
   },
   {
-    title: '权限管理',
+    title: '学生管理',
     icon: 'ion:key-outline',
     color: '#4daf1bc9',
+    route: 'Student',
   },
   {
-    title: '图表',
+    title: '楼宇管理',
     icon: 'ion:bar-chart-outline',
     color: '#00d8ff',
+    route: 'DormBuild',
+  },
+  {
+    title: '寝室管理',
+    icon: 'ion:home-outline',
+    color: '#bf0c2c',
+    route: 'Dormitory',
+  },
+];
+export const navItemsManager: NavItem[] = [
+  {
+    title: '个人中心',
+    icon: 'ion:layers-outline',
+    color: '#e18525',
+    route: 'PersonalCenter',
+  },
+  {
+    title: '报修管理',
+    icon: 'uil:wrench',
+    color: '#3fb27f',
+    route: 'Repair',
+  },
+  {
+    title: '学生管理',
+    icon: 'ion:key-outline',
+    color: '#4daf1bc9',
+    route: 'Student',
+  },
+  {
+    title: '寝室管理',
+    icon: 'ion:home-outline',
+    color: '#bf0c2c',
+    route: 'Dormitory',
   },
 ];
 

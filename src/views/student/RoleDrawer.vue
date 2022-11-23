@@ -45,6 +45,8 @@
         id = null;
         if (unref(isUpdate)) {
           id = data.record.id;
+          valueChange('sex', data.record.sex, true);
+          valueChange('dormBuildId', data.record.dormBuildId, true);
           setFieldsValue({
             ...data.record,
           });
@@ -65,7 +67,7 @@
           setDrawerProps({ confirmLoading: false });
         }
       }
-      const valueChange = async (key: string, value: string) => {
+      const valueChange = async (key: string, value: string, first: boolean) => {
         switch (key) {
           case 'sex': {
             const { list } = await getDormList({ sex: value });
@@ -75,6 +77,10 @@
                 options: list.map((item) => ({ label: item.name ?? '', value: item.id })),
               },
             });
+            if (!first) {
+              // 不是第一次进入就清空下面表单
+              setFieldsValue({ dormBuildId: '', dormitoryId: '' });
+            }
             break;
           }
           case 'dormBuildId': {
@@ -85,14 +91,15 @@
                 options: list.map((item) => ({ label: item.name ?? '', value: item.id })),
               },
             });
+            if (!first) {
+              // 不是第一次进入就清空下面表单
+              setFieldsValue({ dormitoryId: '' });
+            }
             break;
           }
           default:
             break;
         }
-        if (key === 'dormBuildId') {
-        }
-        console.log(key, value);
       };
 
       return {

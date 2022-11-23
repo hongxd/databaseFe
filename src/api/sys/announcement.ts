@@ -11,5 +11,7 @@ export const getAnnouncementList = (params?: AnnounceMent) =>
 export const AddAnnouncement = (info: AnnounceMentForm) => {
   return defHttp.put<string>({ url: Api.notice, data: info });
 };
+export const getAnnouncementContent = (id: string) =>
+  defHttp.get<AnnounceMent>({ url: Api.notice + `/${id}` });
 export const deleteAnnouncement = (params: idsModel) =>
   defHttp.delete<string>({ url: Api.notice, data: params });
