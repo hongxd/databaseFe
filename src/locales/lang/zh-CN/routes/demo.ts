@@ -1,9 +1,4 @@
 export default {
-  charts: {
-    charts: '图表',
-    line: '折线图',
-    pie: '饼图',
-  },
   comp: {
     comp: '组件',
     basic: '基础组件',

@@ -20,7 +20,7 @@ import { h } from 'vue';
 interface UserState {
   userInfo: Nullable<UserInfo>;
   token?: string;
-  roleList: RoleEnum[];
+  roles: RoleEnum[];
   sessionTimeout?: boolean;
   lastUpdateTime: number;
 }
@@ -32,8 +32,8 @@ export const useUserStore = defineStore({
     userInfo: null,
     // token
     token: undefined,
-    // roleList
-    roleList: [],
+    // roles
+    roles: [],
     // Whether the login expired
     sessionTimeout: false,
     // Last fetch time
@@ -47,7 +47,7 @@ export const useUserStore = defineStore({
       return this.token || getAuthCache<string>(TOKEN_KEY);
     },
     getRoleList(): RoleEnum[] {
-      return this.roleList.length > 0 ? this.roleList : getAuthCache<RoleEnum[]>(ROLES_KEY);
+      return this.roles.length > 0 ? this.roles : getAuthCache<RoleEnum[]>(ROLES_KEY);
     },
     getSessionTimeout(): boolean {
       return !!this.sessionTimeout;
@@ -61,9 +61,9 @@ export const useUserStore = defineStore({
       this.token = info ? info : ''; // for null or undefined value
       setAuthCache(TOKEN_KEY, info);
     },
-    setRoleList(roleList: RoleEnum[]) {
-      this.roleList = roleList;
-      setAuthCache(ROLES_KEY, roleList);
+    setRoleList(roles: RoleEnum[]) {
+      this.roles = roles;
+      setAuthCache(ROLES_KEY, roles);
     },
     setUserInfo(info: UserInfo | null) {
       this.userInfo = info;
@@ -76,7 +76,7 @@ export const useUserStore = defineStore({
     resetState() {
       this.userInfo = null;
       this.token = '';
-      this.roleList = [];
+      this.roles = [];
       this.sessionTimeout = false;
     },
     /**
@@ -125,10 +125,10 @@ export const useUserStore = defineStore({
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null;
       const userInfo = await getUserInfo();
-      const { roles = [] } = userInfo;
+      const { roles } = userInfo;
       if (isArray(roles)) {
-        const roleList = roles.map((item) => item.value) as RoleEnum[];
-        this.setRoleList(roleList);
+        const role = roles.map((item) => item.value) as RoleEnum[];
+        this.setRoleList(role);
       } else {
         userInfo.roles = [];
         this.setRoleList([]);

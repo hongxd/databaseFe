@@ -3,21 +3,20 @@
     <span :class="[prefixCls, `${prefixCls}--${theme}`]" class="flex">
       <img :class="`${prefixCls}__header`" :src="getUserInfo.avatar" />
       <span :class="`${prefixCls}__info hidden md:block`">
-        <span :class="`${prefixCls}__name  `" class="truncate">
-          {{ getUserInfo.name }}
-        </span>
+        <span :class="`${prefixCls}__name  `" class="truncate"> {{ getUserInfo.username }} </span>
       </span>
     </span>
 
     <template #overlay>
       <Menu @click="handleMenuClick">
-        <MenuItem
+        <!-- 以下是文档相关内容 -->
+        <!-- <MenuItem
           key="doc"
           :text="t('layout.header.dropdownItemDoc')"
           icon="ion:document-text-outline"
           v-if="getShowDoc"
         />
-        <MenuDivider v-if="getShowDoc" />
+        <MenuDivider v-if="getShowDoc" /> -->
         <MenuItem
           v-if="getUseLockPage"
           key="lock"
@@ -63,7 +62,6 @@
       Dropdown,
       Menu,
       MenuItem: createAsyncComponent(() => import('./DropMenuItem.vue')),
-      MenuDivider: Menu.Divider,
       LockAction: createAsyncComponent(() => import('../lock/LockModal.vue')),
     },
     props: {
@@ -76,8 +74,8 @@
       const userStore = useUserStore();
 
       const getUserInfo = computed(() => {
-        const { name = '', avatar, desc } = userStore.getUserInfo || {};
-        return { name, avatar: avatar || headerImg, desc };
+        const { username = '', avatar, desc } = userStore.getUserInfo || {};
+        return { username, avatar: avatar || headerImg, desc };
       });
 
       const [register, { openModal }] = useModal();
